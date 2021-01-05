@@ -1,0 +1,7 @@
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.exe.config
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.exe
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.pdb
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.csprojAssemblyReference.cache
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.csproj.CoreCompileInputs.cache
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.exe
+F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.pdb
