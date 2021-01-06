@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStructure_CSharp
+﻿namespace DataStructure_CSharp
 {
     /// <summary>
     /// Sequential/Sequence
@@ -12,7 +6,7 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class SqList<T>
     {
-        public T[] Data = new T[GlobalVariable.Instance.MaxSize];
+        public T[] Data = new T[GlobalVariable.MaxSize];
         public int Length;
     }
     /// <summary>

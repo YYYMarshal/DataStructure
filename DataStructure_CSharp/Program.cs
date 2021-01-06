@@ -24,11 +24,7 @@ namespace DataStructure_CSharp
                 SinglyLinkedList<int>.Instance.Delete(list, 7);
                 SinglyLinkedList<int>.Instance.Delete(list, 8);
                 SinglyLinkedList<int>.Instance.Delete(list, 9);
-                while (list != null)
-                {
-                    Console.WriteLine(list.Data);
-                    list = list.Next;
-                }
+                SinglyLinkedList<int>.Instance.PrintSinglyLinkedList(list);
             }
             void Test20201228()
             {

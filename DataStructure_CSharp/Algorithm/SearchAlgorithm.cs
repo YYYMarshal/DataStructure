@@ -10,10 +10,10 @@ namespace DataStructure_CSharp
     /// 第九章《查找》
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ChapterSearch<T>
+    public class SearchAlgorithm<T>
     {
-        private static readonly Lazy<ChapterSearch<T>> lazy = new Lazy<ChapterSearch<T>>(() => new ChapterSearch<T>());
-        public static ChapterSearch<T> Instance
+        private static readonly Lazy<SearchAlgorithm<T>> lazy = new Lazy<SearchAlgorithm<T>>(() => new SearchAlgorithm<T>());
+        public static SearchAlgorithm<T> Instance
         {
             get
             {
@@ -24,6 +24,9 @@ namespace DataStructure_CSharp
         /// <summary>
         /// 顺序查找(顺序表)：查找成功则返回key所在的索引；否则返回-1
         /// </summary>
+        /// <param name="array"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public int SequentialSearch(T[] array, T key)
         {
             for (int i = 0; i < array.Length; i++)
@@ -34,20 +37,24 @@ namespace DataStructure_CSharp
             return -1;
         }
         /// <summary>
-        ///  顺序查找(链表)
+        /// 顺序查找(链表)
         /// </summary>
+        /// <param name="head"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public LNode<T> SequentialSearch(LNode<T> head, T key)
         {
-            LNode<T> p = head.Next;
-            while (p != null)
+            LNode<T> tailNode = head.Next;
+            while (tailNode != null)
             {
-                if (key.Equals(p.Data))
-                    return p;
-                p = p.Next;
+                if (key.Equals(tailNode.Data))
+                    return tailNode;
+                tailNode = tailNode.Next;
             }
             return null;
         }
         #endregion
+
         #region 二分查找（折半查找）
         /// <summary>
         /// 二分查找（折半查找）

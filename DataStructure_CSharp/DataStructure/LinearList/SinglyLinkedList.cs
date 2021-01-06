@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataStructure_CSharp
 {
+    /// <summary>
+    /// 单链表
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SinglyLinkedList<T>
     {
         private static readonly Lazy<SinglyLinkedList<T>> lazy = new Lazy<SinglyLinkedList<T>>(() => new SinglyLinkedList<T>());
@@ -17,17 +21,17 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 尾插法
+        /// 单链表的建立：尾插法
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
         public LNode<T> CreateListTail(T[] array)
         {
-            LNode<T> node = new LNode<T>
+            LNode<T> list = new LNode<T>
             {
                 Next = null
             };
-            LNode<T> tailNode = node;
+            LNode<T> tailNode = list;
             for (int i = 0; i < array.Length; i++)
             {
                 LNode<T> newNode = new LNode<T>()
@@ -38,16 +42,16 @@ namespace DataStructure_CSharp
                 tailNode = tailNode.Next;
             }
             tailNode.Next = null;
-            return node.Next;
+            return list.Next;
         }
         /// <summary>
-        /// 头插法
+        /// 单链表的建立：头插法
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
         public LNode<T> CreateListHead(T[] array)
         {
-            LNode<T> node = new LNode<T>()
+            LNode<T> list = new LNode<T>()
             {
                 Next = null
             };
@@ -56,33 +60,45 @@ namespace DataStructure_CSharp
                 LNode<T> newNode = new LNode<T>()
                 {
                     Data = array[i],
-                    Next = node.Next
+                    Next = list.Next
                 };
-                node.Next = newNode;
+                list.Next = newNode;
             }
-            return node.Next;
+            return list.Next;
         }
         /// <summary>
-        /// 根据元素值删除结点
+        /// 单链表的删除：根据元素值删除结点
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="list"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool Delete(LNode<T> node, T data)
+        public bool Delete(LNode<T> list, T data)
         {
-            LNode<T> tempNode = node;
-            while (tempNode.Next != null)
+            LNode<T> targetNode = list;
+            while (targetNode.Next != null)
             {
-                if (tempNode.Next.Data.Equals(data))
+                if (targetNode.Next.Data.Equals(data))
                     break;
-                tempNode = tempNode.Next;
+                targetNode = targetNode.Next;
             }
-            if (tempNode.Next == null)
+            if (targetNode.Next == null)
                 return false;
             else
             {
-                tempNode.Next = tempNode.Next.Next;
+                targetNode.Next = targetNode.Next.Next;
                 return true;
+            }
+        }
+        /// <summary>
+        /// My: Print a singly linked list
+        /// </summary>
+        /// <param name="list"></param>
+        public void PrintSinglyLinkedList(LNode<T> list)
+        {
+            while (list != null)
+            {
+                Console.WriteLine(list.Data);
+                list = list.Next;
             }
         }
     }

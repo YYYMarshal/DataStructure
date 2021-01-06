@@ -5,3 +5,10 @@ F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CS
 F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.csproj.CoreCompileInputs.cache
 F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.exe
 F:\YYYMARS\DEMO\VS\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.pdb
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.exe.config
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.exe
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\bin\Debug\DataStructure_CSharp.pdb
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.csprojAssemblyReference.cache
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.csproj.CoreCompileInputs.cache
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.exe
+E:\DEMO\yuxuebing\DataStructure\DataStructure_CSharp\obj\Debug\DataStructure_CSharp.pdb

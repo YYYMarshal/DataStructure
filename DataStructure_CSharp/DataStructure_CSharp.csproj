@@ -43,18 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinarySearchTree.cs" />
-    <Compile Include="BinaryTree.cs" />
-    <Compile Include="ChapterSearch.cs" />
-    <Compile Include="GlobalVariable.cs" />
-    <Compile Include="NodeClass.cs" />
+    <Compile Include="DataStructure\Tree\BinarySearchTree.cs" />
+    <Compile Include="DataStructure\Tree\BinaryTree.cs" />
+    <Compile Include="Algorithm\SearchAlgorithm.cs" />
+    <Compile Include="Common\GlobalVariable.cs" />
+    <Compile Include="Common\NodeType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SequenceList.cs" />
-    <Compile Include="SinglyLinkedList.cs" />
+    <Compile Include="DataStructure\LinearList\SequenceList.cs" />
+    <Compile Include="DataStructure\LinearList\SinglyLinkedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataStructure\Stack\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
