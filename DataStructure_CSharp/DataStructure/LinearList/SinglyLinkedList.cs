@@ -89,17 +89,5 @@ namespace DataStructure_CSharp
                 return true;
             }
         }
-        /// <summary>
-        /// My: Print a singly linked list
-        /// </summary>
-        /// <param name="list"></param>
-        public void PrintSinglyLinkedList(LNode<T> list)
-        {
-            while (list != null)
-            {
-                Console.WriteLine(list.Data);
-                list = list.Next;
-            }
-        }
     }
 }

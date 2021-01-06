@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\SortAlgorithm.cs" />
+    <Compile Include="Common\Utility.cs" />
     <Compile Include="DataStructure\Tree\BinarySearchTree.cs" />
     <Compile Include="DataStructure\Tree\BinaryTree.cs" />
     <Compile Include="Algorithm\SearchAlgorithm.cs" />

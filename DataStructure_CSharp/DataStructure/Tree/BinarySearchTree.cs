@@ -61,9 +61,9 @@ namespace DataStructure_CSharp
         /// <summary>
         /// 二叉搜索树：递归查找；out查找结点
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="root"></param>
         /// <param name="data"></param>
-        /// <param name="bTParent"></param>
+        /// <param name="btParent"></param>
         /// <returns></returns>
         public BTNode<T> RecursionSearch(BTNode<T> root, T data, out BTNode<T> btParent)
         {
@@ -117,7 +117,7 @@ namespace DataStructure_CSharp
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public BTNode<T> InitBinarySearchTree(params T[] array)
+        public BTNode<T> CreateBinarySearchTree(params T[] array)
         {
             BTNode<T> btNode = null;
             for (int i = 0; i < array.Length; i++)

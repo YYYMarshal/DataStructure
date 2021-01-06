@@ -12,7 +12,17 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
-            Test20210105();
+            Test20210106();
+            void Test20210106()
+            {
+                int[] array = new int[] { 9, 8, 5, 4, 1, 2 };
+                Utility<int>.PrintArray(array);
+                //SortAlgorithm<int>.Instance.InsertSort(array);
+                //SortAlgorithm<int>.Instance.BubbleSort(array);
+                //SortAlgorithm<int>.Instance.QuickSort(array, 0, array.Length - 1);
+                SortAlgorithm<int>.Instance.SelectSort(array);
+                Utility<int>.PrintArray(array);
+            }
             void Test20210105()
             {
                 Console.WriteLine("头插法");
@@ -24,7 +34,7 @@ namespace DataStructure_CSharp
                 SinglyLinkedList<int>.Instance.Delete(list, 7);
                 SinglyLinkedList<int>.Instance.Delete(list, 8);
                 SinglyLinkedList<int>.Instance.Delete(list, 9);
-                SinglyLinkedList<int>.Instance.PrintSinglyLinkedList(list);
+                Utility<int>.PrintSinglyLinkedList(list);
             }
             void Test20201228()
             {
@@ -39,8 +49,8 @@ namespace DataStructure_CSharp
             }
             void Test()
             {
-                BTNode<int> bTNode = BinarySearchTree<int>.Instance.InitBST(5, 3);
-                BTNode<int> searchNode = BinarySearchTree<int>.Instance.RecursionSearch(bTNode, 3, out BTNode<int> bTParent);
+                BTNode<int> btNode = BinarySearchTree<int>.Instance.CreateBinarySearchTree(5, 3);
+                BTNode<int> searchNode = BinarySearchTree<int>.Instance.RecursionSearch(btNode, 3, out BTNode<int> bTParent);
                 Console.WriteLine($"searchNode.data : {searchNode.Data}");
                 Console.WriteLine($"bTParent.data : {bTParent.Data}");
             }

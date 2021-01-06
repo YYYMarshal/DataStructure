@@ -20,6 +20,7 @@ namespace DataStructure_CSharp
                 return lazy.Value;
             }
         }
+
         #region 顺序查找
         /// <summary>
         /// 顺序查找(顺序表)：查找成功则返回key所在的索引；否则返回-1
@@ -73,7 +74,6 @@ namespace DataStructure_CSharp
             }
             return -1;
         }
-
         #endregion
 
     }

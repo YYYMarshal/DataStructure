@@ -27,7 +27,7 @@ namespace DataStructure_CSharp
         /// <param name="sqList"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public int GetElemIndex(SqList<T> sqList, T data)
+        public int GetIndex(SqList<T> sqList, T data)
         {
             for (int i = 0; i < sqList.Length; i++)
             {
@@ -44,7 +44,7 @@ namespace DataStructure_CSharp
         /// <param name="pos"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool InsertElem(SqList<T> sqList, int pos, T data)
+        public bool Insert(SqList<T> sqList, int pos, T data)
         {
             if (pos < 0 || pos > sqList.Length || sqList.Length == GlobalVariable.MaxSize)
                 return false;
@@ -61,7 +61,7 @@ namespace DataStructure_CSharp
         /// <param name="pos"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool DeleteElem(SqList<T> sqList, int pos, out T data)
+        public bool Delete(SqList<T> sqList, int pos, out T data)
         {
             data = default;
             if (pos < 0 || pos > sqList.Length - 1)
