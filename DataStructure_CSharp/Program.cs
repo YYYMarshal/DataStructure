@@ -12,16 +12,38 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
-            Test20210106();
+            void Test20210112()
+            {
+                int value = 234;
+                int[] values = new int[4];
+                for (int i = 0; i < values.Length; i++)
+                {
+                    values[i] = value % 10;
+                    value /= 10;
+                }
+                Console.WriteLine();
+            }
+            void Test20210109()
+            {
+                DateTime.TryParse("2020.10.01", out DateTime result);
+                Console.WriteLine(result);
+                Console.WriteLine(result.ToShortDateString());
+                Console.WriteLine(DateTime.Now.ToShortDateString());
+
+                double a = 10;
+                a += a *= a /= a - 6;
+                Console.WriteLine(a);
+            }
+            //Test20210106();
             void Test20210106()
             {
                 int[] array = new int[] { 9, 8, 5, 4, 1, 2 };
-                Utility<int>.PrintArray(array);
+                Utility<int>.Print(array);
                 //SortAlgorithm<int>.Instance.InsertSort(array);
                 //SortAlgorithm<int>.Instance.BubbleSort(array);
                 //SortAlgorithm<int>.Instance.QuickSort(array, 0, array.Length - 1);
                 SortAlgorithm<int>.Instance.SelectSort(array);
-                Utility<int>.PrintArray(array);
+                Utility<int>.Print(array);
             }
             void Test20210105()
             {
@@ -34,7 +56,7 @@ namespace DataStructure_CSharp
                 SinglyLinkedList<int>.Instance.Delete(list, 7);
                 SinglyLinkedList<int>.Instance.Delete(list, 8);
                 SinglyLinkedList<int>.Instance.Delete(list, 9);
-                Utility<int>.PrintSinglyLinkedList(list);
+                Utility<int>.Print(list);
             }
             void Test20201228()
             {

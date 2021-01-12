@@ -8,7 +8,7 @@ namespace DataStructure_CSharp
 {
     public class Utility<T>
     {
-        public static void PrintArray(T[] array)
+        public static void Print(T[] array)
         {
             Console.WriteLine("====== 数组打印 ======");
             for (int i = 0; i < array.Length; i++)
@@ -20,7 +20,7 @@ namespace DataStructure_CSharp
         /// My: Print a singly linked list
         /// </summary>
         /// <param name="list"></param>
-        public static void PrintSinglyLinkedList(LNode<T> list)
+        public static void Print(LNode<T> list)
         {
             while (list != null)
             {
