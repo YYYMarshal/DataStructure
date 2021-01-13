@@ -12,6 +12,33 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
+            Test20210113Two();
+            void Test20210113Two()
+            {
+                //int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+                int[] array = { 1, 2, 3, 4, 5 };
+                BTNode<int> btNode = null;
+                BinaryTree<int> binaryTree = new BinaryTree<int>();
+                binaryTree.CreateTree(ref btNode, array, 0);
+                Console.WriteLine(binaryTree.GetDepth(btNode));
+                Console.WriteLine(binaryTree.GetLeafNodeCount(btNode));
+                Console.WriteLine(binaryTree.GetAllNodeCount(btNode));
+                Console.WriteLine("LevelTraversal");
+                binaryTree.LevelTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("PreorderTraversal");
+                binaryTree.PreorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("InorderTraversal");
+                binaryTree.InorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("PostorderTraversal");
+                binaryTree.PostorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("PreordeTraversalNonRecursion");
+                binaryTree.PreordeTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("InorderTraversalNonRecursion");
+                binaryTree.InorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine("PostorderTraversalNonRecursion");
+                binaryTree.PostorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                Console.WriteLine();
+            }
             void Test20210112()
             {
                 int value = 234;
@@ -69,14 +96,6 @@ namespace DataStructure_CSharp
                     list = list.Next;
                 }
             }
-            void Test()
-            {
-                BTNode<int> btNode = BinarySearchTree<int>.Instance.CreateBinarySearchTree(5, 3);
-                BTNode<int> searchNode = BinarySearchTree<int>.Instance.RecursionSearch(btNode, 3, out BTNode<int> bTParent);
-                Console.WriteLine($"searchNode.data : {searchNode.Data}");
-                Console.WriteLine($"bTParent.data : {bTParent.Data}");
-            }
-
             Console.ReadLine();
         }
 

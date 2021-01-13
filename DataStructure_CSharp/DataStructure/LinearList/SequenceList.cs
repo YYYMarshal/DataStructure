@@ -22,22 +22,6 @@ namespace DataStructure_CSharp
         }
 
         /// <summary>
-        /// 顺序表：按元素值的查找算法
-        /// </summary>
-        /// <param name="sqList"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public int GetIndex(SqList<T> sqList, T data)
-        {
-            for (int i = 0; i < sqList.Length; i++)
-            {
-                if (data.Equals(sqList.Data))
-                    return i;
-            }
-            return -1;
-        }
-
-        /// <summary>
         /// 顺序表：插入元素
         /// </summary>
         /// <param name="sqList"></param>
@@ -54,6 +38,22 @@ namespace DataStructure_CSharp
             ++sqList.Length;
             return true;
         }
+        /// <summary>
+        /// 顺序表：按元素值的查找算法
+        /// </summary>
+        /// <param name="sqList"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public int GetIndex(SqList<T> sqList, T data)
+        {
+            for (int i = 0; i < sqList.Length; i++)
+            {
+                if (data.Equals(sqList.Data))
+                    return i;
+            }
+            return -1;
+        }
+
         /// <summary>
         /// 顺序表：删除元素
         /// </summary>

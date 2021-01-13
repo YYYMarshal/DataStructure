@@ -12,13 +12,24 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class BinaryTree<T>
     {
-        private static readonly Lazy<BinaryTree<T>> lazy = new Lazy<BinaryTree<T>>(() => new BinaryTree<T>());
-        public static BinaryTree<T> Instance
+        // https://blog.csdn.net/chenxun_2010/article/details/42365763?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
+        /// <summary>
+        /// 创建二叉树（从上到下，从左至右）；
+        /// 插入过程为先序遍历的顺序
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="array"></param>
+        /// <param name="index"></param>
+        public void CreateTree(ref BTNode<T> btNode, T[] array, int index)
         {
-            get
+            if (index >= array.Length)
+                return;
+            btNode = new BTNode<T>()
             {
-                return lazy.Value;
-            }
+                Data = array[index]
+            };
+            CreateTree(ref btNode.LeftChild, array, 2 * index + 1);
+            CreateTree(ref btNode.RightChild, array, 2 * index + 2);
         }
         /// <summary>
         /// 获取树的深度（递归）
@@ -29,32 +40,32 @@ namespace DataStructure_CSharp
         {
             if (btNode == null)
                 return 0;
-            return Math.Max(GetDepth(btNode.LeftChild), GetDepth(btNode.RightChild) + 1);
+            return Math.Max(GetDepth(btNode.LeftChild), GetDepth(btNode.RightChild)) + 1;
         }
         /// <summary>
-        /// 获取叶子结点的数量
+        /// 获取树的所有叶子结点的数量
         /// </summary>
         /// <param name="btNode"></param>
         /// <returns></returns>
-        public int GetLeafCount(BTNode<T> btNode)
+        public int GetLeafNodeCount(BTNode<T> btNode)
         {
             if (btNode == null)
                 return 0;
             else if (btNode.LeftChild == null && btNode.RightChild == null)
                 return 1;
             else
-                return GetLeafCount(btNode.LeftChild) + GetLeafCount(btNode.RightChild);
+                return GetLeafNodeCount(btNode.LeftChild) + GetLeafNodeCount(btNode.RightChild);
         }
         /// <summary>
-        /// 获取树的结点的数量
+        /// 获取树的所有结点的数量
         /// </summary>
         /// <param name="btNode"></param>
         /// <returns></returns>
-        public int GetTreeNodeSize(BTNode<T> btNode)
+        public int GetAllNodeCount(BTNode<T> btNode)
         {
             if (btNode == null)
                 return 0;
-            return GetTreeNodeSize(btNode.LeftChild) + GetTreeNodeSize(btNode.RightChild) + 1;
+            return GetAllNodeCount(btNode.LeftChild) + GetAllNodeCount(btNode.RightChild) + 1;
         }
         /// <summary>
         /// 二叉树：层次遍历
@@ -69,16 +80,21 @@ namespace DataStructure_CSharp
                 queue.Enqueue(btNode);
                 while (queue.Count != 0)
                 {
-                    BTNode<T> tempNode = queue.Dequeue();
-                    callback(tempNode);
+                    BTNode<T> node = queue.Dequeue();
+                    callback(node);
                     //callback.Invoke(btNode);
-                    if (tempNode.LeftChild != null)
-                        queue.Enqueue(tempNode.LeftChild);
-                    if (tempNode.RightChild != null)
-                        queue.Enqueue(tempNode.RightChild);
+                    if (node.LeftChild != null)
+                        queue.Enqueue(node.LeftChild);
+                    if (node.RightChild != null)
+                        queue.Enqueue(node.RightChild);
                 }
             }
         }
+        /// <summary>
+        /// 先序遍历
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="callback"></param>
         public void PreorderTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode != null)
@@ -88,6 +104,11 @@ namespace DataStructure_CSharp
                 PreorderTraversal(btNode.RightChild, callback);
             }
         }
+        /// <summary>
+        /// 中序遍历
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="callback"></param>
         public void InorderTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode != null)
@@ -97,6 +118,11 @@ namespace DataStructure_CSharp
                 InorderTraversal(btNode.RightChild, callback);
             }
         }
+        /// <summary>
+        /// 后序遍历
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="callback"></param>
         public void PostorderTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode != null)
@@ -107,23 +133,78 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 先序非递归遍历
+        /// 先序遍历---非递归
         /// </summary>
-        public void PreordeTraversalNonRecursion(BTNode<T> btNode,Action<BTNode<T>> callback)
+        public void PreordeTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode == null)
                 return;
             Stack<BTNode<T>> stack = new Stack<BTNode<T>>();
-            BTNode<T> targetNode = null;
             stack.Push(btNode);
-            while (stack.Count!=0)
+            while (stack.Count != 0)
             {
-                targetNode = stack.Pop();
-                callback(targetNode);
-                if (targetNode.RightChild != null)
-                    stack.Push(targetNode.RightChild);
-                if (targetNode.LeftChild != null)
-                    stack.Push(targetNode.LeftChild);
+                BTNode<T> node = stack.Pop();
+                callback(node);
+                // 必须：先右后左
+                if (node.RightChild != null)
+                    stack.Push(node.RightChild);
+                if (node.LeftChild != null)
+                    stack.Push(node.LeftChild);
+            }
+        }
+        /// <summary>
+        /// 中序遍历---非递归
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="callback"></param>
+        public void InorderTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
+        {
+            if (btNode == null)
+                return;
+            Stack<BTNode<T>> stack = new Stack<BTNode<T>>();
+            BTNode<T> node = btNode;
+            while (stack.Count != 0 || node != null)
+            {
+                while (node != null)
+                {
+                    stack.Push(node);
+                    node = node.LeftChild;
+                }
+                if (stack.Count != 0)
+                {
+                    node = stack.Pop();
+                    callback(node);
+                    node = node.RightChild;
+                }
+            }
+        }
+        /// <summary>
+        /// 后序遍历---非递归
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <param name="callback"></param>
+        public void PostorderTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
+        {
+            if (btNode == null)
+                return;
+            Stack<BTNode<T>> stackOne = new Stack<BTNode<T>>();
+            Stack<BTNode<T>> stackTwo = new Stack<BTNode<T>>();
+            stackOne.Push(btNode);
+            BTNode<T> node;
+            while (stackOne.Count != 0)
+            {
+                node = stackOne.Pop();
+                stackTwo.Push(node);
+                if (node.LeftChild != null)
+                    stackOne.Push(node.LeftChild);
+                if (node.RightChild != null)
+                    stackTwo.Push(node.RightChild);
+            }
+            while (stackTwo.Count != 0)
+            {
+                // 出栈顺序即为后序遍历顺序
+                node = stackTwo.Pop();
+                callback(node);
             }
         }
     }
