@@ -63,48 +63,15 @@ namespace DataStructure_CSharp
         /// <returns></returns>
         public bool InsertHead(ListNode<T> list, T data, int pos)
         {
-            if (pos < 0)
+            ListNode<T> node = GetNodeByPosition(list, pos);
+            if (node == null)
                 return false;
-            ListNode<T> node = list;
-            for (int i = 0; i < pos; i++)
-            {
-                if (node.next == null)
-                    return false;
-                node = node.next;
-            }
             ListNode<T> newNode = new ListNode<T>()
             {
                 data = data,
                 next = node.next
             };
             node.next = newNode;
-            return true;
-        }
-        /// <summary>
-        /// My：在pos位置插入一个结点（尾插法）
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="data"></param>
-        /// <param name="pos"></param>
-        /// <returns></returns>
-        public bool InsertTail(ListNode<T> list, T data, int pos)
-        {
-            if (pos < 0)
-                return false;
-            ListNode<T> node = list;
-            for (int i = 0; i < pos; i++)
-            {
-                if (node.next == null)
-                    return false;
-                node = node.next;
-            }
-            ListNode<T> newNode = new ListNode<T>()
-            {
-                data = data
-            };
-            node.next = newNode;
-            node = node.next;
-            node.next = null;
             return true;
         }
         /// <summary>
@@ -135,15 +102,9 @@ namespace DataStructure_CSharp
         /// <returns></returns>
         public bool DeleteByPosition(ListNode<T> list, int pos)
         {
-            if (pos < 0)
+            ListNode<T> node = GetNodeByPosition(list, pos);
+            if (node == null)
                 return false;
-            ListNode<T> node = list;
-            for (int i = 0; i < pos; i++)
-            {
-                if (node.next == null)
-                    return false;
-                node = node.next;
-            }
             node.next = node.next.next;
             return true;
         }
@@ -177,6 +138,7 @@ namespace DataStructure_CSharp
                     return null;
                 node = node.next;
             }
+            // NOTE: node.next; Because it has a head node
             return node;
         }
         /// <summary>
@@ -186,6 +148,16 @@ namespace DataStructure_CSharp
         public void Print(ListNode<T> list)
         {
             Console.WriteLine("====== 单链表打印 ======");
+            while (list != null)
+            {
+                Console.Write(list.data + "  ");
+                list = list.next;
+            }
+            Console.WriteLine();
+        }
+        public void PrintExcludeHeadNode(ListNode<T> list)
+        {
+            Console.WriteLine("====== 单链表打印 ======");
             if (list == null)
             {
                 Console.WriteLine("null");
@@ -193,9 +165,10 @@ namespace DataStructure_CSharp
             }
             while (list.next != null)
             {
-                Console.WriteLine(list.next.data);
+                Console.Write(list.next.data + "  ");
                 list = list.next;
             }
+            Console.WriteLine();
         }
     }
 }

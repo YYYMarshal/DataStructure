@@ -14,11 +14,11 @@ namespace DataStructure_CSharp
     public class BinarySearchTree<T> : BinaryTree<T>
     {
         /// <summary>
-        /// 二叉搜索树的初始化（建立）
+        /// 二叉搜索树：初始化（建立）
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public BTNode<T> CreateBinarySearchTree(params T[] array)
+        public BTNode<T> Create(params T[] array)
         {
             BTNode<T> btNode = null;
             for (int i = 0; i < array.Length; i++)
@@ -32,7 +32,7 @@ namespace DataStructure_CSharp
         }
 
         /// <summary>
-        /// 二叉搜索树的插入
+        /// 二叉搜索树：插入结点
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="data"></param>
@@ -118,7 +118,6 @@ namespace DataStructure_CSharp
                 else
                     return RecursionSearch(btParent.rightChild, data, out btParent);
             }
-
         }
     }
 }

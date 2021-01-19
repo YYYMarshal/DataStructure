@@ -13,6 +13,8 @@ namespace DataStructure_CSharp
         static void Main(string[] args)
         {
             TestSinglyLinkedList();
+            //TestSequenceList();
+            //TestBinaryTree();
 
             //Test20210118Three();
             void Test20210118Three()
@@ -50,7 +52,7 @@ namespace DataStructure_CSharp
                 int[] array = { 1, 2, 3, 4, 5 };
                 BTNode<int> btNode = null;
                 BinaryTree<int> binaryTree = new BinaryTree<int>();
-                binaryTree.CreateTree(ref btNode, array, 0);
+                binaryTree.Create(ref btNode, array, 0);
                 Console.WriteLine(binaryTree.GetDepth(btNode));
                 Console.WriteLine(binaryTree.GetLeafNodeCount(btNode));
                 Console.WriteLine(binaryTree.GetAllNodeCount(btNode));
@@ -129,22 +131,79 @@ namespace DataStructure_CSharp
         {
             SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
             int[] array = { 1, 2, 3, 4, 5, 6 };
-            ListNode<int> list = singlyLinkedList.CreateListTail(array);
-            singlyLinkedList.Print(list);
 
-            singlyLinkedList.InsertHead(list, 10, 0);
-            singlyLinkedList.InsertHead(list, 11, 1);
-            singlyLinkedList.InsertHead(list, 99, 5);
-            singlyLinkedList.Print(list);
-            singlyLinkedList.DeleteByData(list, 4);
-            singlyLinkedList.DeleteByPosition(list, -1);
-            singlyLinkedList.Print(list);
-            ListNode<int> node = singlyLinkedList.GetNodeByPosition(list, 0);
+            Console.WriteLine("\n尾插法建立单链表");
+            ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
+            singlyLinkedList.Print(listTail);
+
+            //Console.WriteLine("头插法建立单链表");
+            //ListNode<int> listHead = singlyLinkedList.CreateListHead(array);
+            //singlyLinkedList.Print(listHead);
+
+            Console.WriteLine("\n头插");
+            singlyLinkedList.InsertHead(listTail, 9, -1);
+            singlyLinkedList.InsertHead(listTail, 10, 0);
+            singlyLinkedList.InsertHead(listTail, 11, 3);
+            singlyLinkedList.InsertHead(listTail, 12, 10);
+            singlyLinkedList.Print(listTail);
+
+            Console.WriteLine("\n按位置（3）查找结点");
+            ListNode<int> node = singlyLinkedList.GetNodeByPosition(listTail, 3);
             singlyLinkedList.Print(node);
-        }
-        private void TestSequenceList()
-        {
+            Console.WriteLine("\n按值（3）查找结点");
+            ListNode<int> nodeTwo = singlyLinkedList.GetNodeByData(listTail, 3);
+            singlyLinkedList.Print(nodeTwo);
 
+            //Console.WriteLine("头插");
+            //singlyLinkedList.InsertHead(node, 9, -1);
+            //singlyLinkedList.InsertHead(node, 10, 0);
+            //singlyLinkedList.InsertHead(node, 11, 3);
+            //singlyLinkedList.InsertHead(node, 12, 10);
+            //singlyLinkedList.Print(node);
+
+            Console.WriteLine("\n通过值（10）删除");
+            singlyLinkedList.DeleteByData(listTail, 10);
+            singlyLinkedList.Print(listTail);
+
+            Console.WriteLine("\n通过位置（4）删除");
+            singlyLinkedList.DeleteByPosition(listTail, 4);
+            singlyLinkedList.Print(listTail);
+
+            //Console.WriteLine("通过位置删除");
+            //singlyLinkedList.DeleteByPosition(listTail, 6);
+            //singlyLinkedList.Print(listTail);
+
+        }
+        private static void TestSequenceList()
+        {
+            SequenceList<int> sequenceList = new SequenceList<int>();
+            int[] array = { 8, 1, 2, 3, 4, 5, 6, 7 };
+            SqList<int> sqList = sequenceList.Create(array);
+            sequenceList.Print(sqList);
+            Console.WriteLine("\n" + sqList.length);
+            sequenceList.Insert(sqList, 1, 10);
+            sequenceList.Print(sqList);
+            sequenceList.Delete(sqList, 5, out int data);
+            sequenceList.Print(sqList);
+            Console.WriteLine("\n值：" + data);
+            int node = sequenceList.GetElem(sqList, 2);
+            Console.WriteLine("\n值：" + node);
+            int index = sequenceList.GetIndex(sqList, 3);
+            Console.WriteLine("\n索引：" + index);
+        }
+        private static void TestBinaryTree()
+        {
+            BinaryTree<int> binaryTree = new BinaryTree<int>();
+            BTNode<int> btNode = new BTNode<int>();
+            int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            binaryTree.Create(ref btNode, array, 0);
+            binaryTree.LevelTraversal(btNode, (node) => Console.WriteLine(node.data));
+            Console.WriteLine("先序遍历");
+            binaryTree.PreorderTraversal(btNode, (node) => Console.WriteLine(node.data));
+            Console.WriteLine("中序遍历");
+            binaryTree.InorderTraversal(btNode, (node) => Console.WriteLine(node.data));
+            Console.WriteLine("后序遍历");
+            binaryTree.PostorderTraversal(btNode, (node) => Console.WriteLine(node.data));
         }
     }
 }

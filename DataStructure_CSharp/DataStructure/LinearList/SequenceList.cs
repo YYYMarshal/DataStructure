@@ -12,22 +12,14 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class SequenceList<T>
     {
-        private static readonly Lazy<SequenceList<T>> lazy = new Lazy<SequenceList<T>>(() => new SequenceList<T>());
-        public static SequenceList<T> Instance
+        public SqList<T> Create(T[] array)
         {
-            get
+            SqList<T> sqList = new SqList<T>();
+            for (int i = 0; i < array.Length; i++)
             {
-                return lazy.Value;
+                Insert(sqList, i, array[i]);
             }
-        }
-
-        /// <summary>
-        /// 顺序表：初始化
-        /// </summary>
-        /// <param name="sqList"></param>
-        public void Init(SqList<T> sqList)
-        {
-            sqList.length = 0;
+            return sqList;
         }
         /// <summary>
         /// 顺序表：插入元素
@@ -67,7 +59,7 @@ namespace DataStructure_CSharp
             return true;
         }
         /// <summary>
-        /// 顺序表：求指定位置元素的算法
+        /// 顺序表：求指定位置元素的算法；返回目标查找元素
         /// </summary>
         /// <param name="sqList"></param>
         /// <param name="pos"></param>
@@ -79,7 +71,7 @@ namespace DataStructure_CSharp
             return sqList.data[pos];
         }
         /// <summary>
-        /// 顺序表：按元素值的查找算法
+        /// 顺序表：按元素值的查找算法；返回目标查找元素的索引
         /// </summary>
         /// <param name="sqList"></param>
         /// <param name="data"></param>
@@ -88,10 +80,18 @@ namespace DataStructure_CSharp
         {
             for (int i = 0; i < sqList.length; i++)
             {
-                if (data.Equals(sqList.data))
+                if (data.Equals(sqList.data[i]))
                     return i;
             }
             return -1;
+        }
+        /// <summary>
+        /// 顺序表：初始化
+        /// </summary>
+        /// <param name="sqList"></param>
+        public void Init(SqList<T> sqList)
+        {
+            sqList.length = 0;
         }
         /// <summary>
         /// My: Print a sequence list

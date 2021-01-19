@@ -20,7 +20,7 @@ namespace DataStructure_CSharp
         /// <param name="btNode"></param>
         /// <param name="array"></param>
         /// <param name="index"></param>
-        public void CreateTree(ref BTNode<T> btNode, T[] array, int index)
+        public void Create(ref BTNode<T> btNode, T[] array, int index)
         {
             if (index >= array.Length)
                 return;
@@ -28,44 +28,8 @@ namespace DataStructure_CSharp
             {
                 data = array[index]
             };
-            CreateTree(ref btNode.leftChild, array, 2 * index + 1);
-            CreateTree(ref btNode.rightChild, array, 2 * index + 2);
-        }
-        /// <summary>
-        /// 获取树的深度（递归）
-        /// </summary>
-        /// <param name="btNode"></param>
-        /// <returns></returns>
-        public int GetDepth(BTNode<T> btNode)
-        {
-            if (btNode == null)
-                return 0;
-            return Math.Max(GetDepth(btNode.leftChild), GetDepth(btNode.rightChild)) + 1;
-        }
-        /// <summary>
-        /// 获取树的所有叶子结点的数量
-        /// </summary>
-        /// <param name="btNode"></param>
-        /// <returns></returns>
-        public int GetLeafNodeCount(BTNode<T> btNode)
-        {
-            if (btNode == null)
-                return 0;
-            else if (btNode.leftChild == null && btNode.rightChild == null)
-                return 1;
-            else
-                return GetLeafNodeCount(btNode.leftChild) + GetLeafNodeCount(btNode.rightChild);
-        }
-        /// <summary>
-        /// 获取树的所有结点的数量
-        /// </summary>
-        /// <param name="btNode"></param>
-        /// <returns></returns>
-        public int GetAllNodeCount(BTNode<T> btNode)
-        {
-            if (btNode == null)
-                return 0;
-            return GetAllNodeCount(btNode.leftChild) + GetAllNodeCount(btNode.rightChild) + 1;
+            Create(ref btNode.leftChild, array, 2 * index + 1);
+            Create(ref btNode.rightChild, array, 2 * index + 2);
         }
         /// <summary>
         /// 二叉树：层次遍历
@@ -75,23 +39,22 @@ namespace DataStructure_CSharp
         public void LevelTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             Queue<BTNode<T>> queue = new Queue<BTNode<T>>();
-            if (btNode != null)
+            if (btNode == null)
+                return;
+            queue.Enqueue(btNode);
+            while (queue.Count != 0)
             {
-                queue.Enqueue(btNode);
-                while (queue.Count != 0)
-                {
-                    BTNode<T> node = queue.Dequeue();
-                    callback(node);
-                    //callback.Invoke(btNode);
-                    if (node.leftChild != null)
-                        queue.Enqueue(node.leftChild);
-                    if (node.rightChild != null)
-                        queue.Enqueue(node.rightChild);
-                }
+                BTNode<T> node = queue.Dequeue();
+                callback(node);
+                //callback.Invoke(btNode);
+                if (node.leftChild != null)
+                    queue.Enqueue(node.leftChild);
+                if (node.rightChild != null)
+                    queue.Enqueue(node.rightChild);
             }
         }
         /// <summary>
-        /// 先序遍历
+        /// 二叉树：先序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -105,7 +68,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 中序遍历
+        /// 二叉树：中序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -119,7 +82,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 后序遍历
+        /// 二叉树：后序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -133,7 +96,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 先序遍历---非递归
+        /// 二叉树：先序遍历---非递归
         /// </summary>
         public void PreordeTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
@@ -153,7 +116,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 中序遍历---非递归
+        /// 二叉树：中序遍历---非递归
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -179,7 +142,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 后序遍历---非递归
+        /// 二叉树：后序遍历---非递归
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -206,6 +169,42 @@ namespace DataStructure_CSharp
                 node = stackTwo.Pop();
                 callback(node);
             }
+        }
+        /// <summary>
+        /// 二叉树：获取树的深度（递归）
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <returns></returns>
+        public int GetDepth(BTNode<T> btNode)
+        {
+            if (btNode == null)
+                return 0;
+            return Math.Max(GetDepth(btNode.leftChild), GetDepth(btNode.rightChild)) + 1;
+        }
+        /// <summary>
+        /// 二叉树：获取树的所有叶子结点的数量
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <returns></returns>
+        public int GetLeafNodeCount(BTNode<T> btNode)
+        {
+            if (btNode == null)
+                return 0;
+            else if (btNode.leftChild == null && btNode.rightChild == null)
+                return 1;
+            else
+                return GetLeafNodeCount(btNode.leftChild) + GetLeafNodeCount(btNode.rightChild);
+        }
+        /// <summary>
+        /// 二叉树：获取树的所有结点的数量
+        /// </summary>
+        /// <param name="btNode"></param>
+        /// <returns></returns>
+        public int GetAllNodeCount(BTNode<T> btNode)
+        {
+            if (btNode == null)
+                return 0;
+            return GetAllNodeCount(btNode.leftChild) + GetAllNodeCount(btNode.rightChild) + 1;
         }
     }
 }
