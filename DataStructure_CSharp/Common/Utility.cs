@@ -16,17 +16,5 @@ namespace DataStructure_CSharp
                 Console.WriteLine(array[i]);
             }
         }
-        /// <summary>
-        /// My: Print a singly linked list
-        /// </summary>
-        /// <param name="list"></param>
-        public static void Print(LNode<T> list)
-        {
-            while (list != null)
-            {
-                Console.WriteLine(list.Data);
-                list = list.Next;
-            }
-        }
     }
 }

@@ -26,10 +26,10 @@ namespace DataStructure_CSharp
                 return;
             btNode = new BTNode<T>()
             {
-                Data = array[index]
+                data = array[index]
             };
-            CreateTree(ref btNode.LeftChild, array, 2 * index + 1);
-            CreateTree(ref btNode.RightChild, array, 2 * index + 2);
+            CreateTree(ref btNode.leftChild, array, 2 * index + 1);
+            CreateTree(ref btNode.rightChild, array, 2 * index + 2);
         }
         /// <summary>
         /// 获取树的深度（递归）
@@ -40,7 +40,7 @@ namespace DataStructure_CSharp
         {
             if (btNode == null)
                 return 0;
-            return Math.Max(GetDepth(btNode.LeftChild), GetDepth(btNode.RightChild)) + 1;
+            return Math.Max(GetDepth(btNode.leftChild), GetDepth(btNode.rightChild)) + 1;
         }
         /// <summary>
         /// 获取树的所有叶子结点的数量
@@ -51,10 +51,10 @@ namespace DataStructure_CSharp
         {
             if (btNode == null)
                 return 0;
-            else if (btNode.LeftChild == null && btNode.RightChild == null)
+            else if (btNode.leftChild == null && btNode.rightChild == null)
                 return 1;
             else
-                return GetLeafNodeCount(btNode.LeftChild) + GetLeafNodeCount(btNode.RightChild);
+                return GetLeafNodeCount(btNode.leftChild) + GetLeafNodeCount(btNode.rightChild);
         }
         /// <summary>
         /// 获取树的所有结点的数量
@@ -65,7 +65,7 @@ namespace DataStructure_CSharp
         {
             if (btNode == null)
                 return 0;
-            return GetAllNodeCount(btNode.LeftChild) + GetAllNodeCount(btNode.RightChild) + 1;
+            return GetAllNodeCount(btNode.leftChild) + GetAllNodeCount(btNode.rightChild) + 1;
         }
         /// <summary>
         /// 二叉树：层次遍历
@@ -83,10 +83,10 @@ namespace DataStructure_CSharp
                     BTNode<T> node = queue.Dequeue();
                     callback(node);
                     //callback.Invoke(btNode);
-                    if (node.LeftChild != null)
-                        queue.Enqueue(node.LeftChild);
-                    if (node.RightChild != null)
-                        queue.Enqueue(node.RightChild);
+                    if (node.leftChild != null)
+                        queue.Enqueue(node.leftChild);
+                    if (node.rightChild != null)
+                        queue.Enqueue(node.rightChild);
                 }
             }
         }
@@ -100,8 +100,8 @@ namespace DataStructure_CSharp
             if (btNode != null)
             {
                 callback(btNode);
-                PreorderTraversal(btNode.LeftChild, callback);
-                PreorderTraversal(btNode.RightChild, callback);
+                PreorderTraversal(btNode.leftChild, callback);
+                PreorderTraversal(btNode.rightChild, callback);
             }
         }
         /// <summary>
@@ -113,9 +113,9 @@ namespace DataStructure_CSharp
         {
             if (btNode != null)
             {
-                InorderTraversal(btNode.LeftChild, callback);
+                InorderTraversal(btNode.leftChild, callback);
                 callback(btNode);
-                InorderTraversal(btNode.RightChild, callback);
+                InorderTraversal(btNode.rightChild, callback);
             }
         }
         /// <summary>
@@ -127,8 +127,8 @@ namespace DataStructure_CSharp
         {
             if (btNode != null)
             {
-                PostorderTraversal(btNode.LeftChild, callback);
-                PostorderTraversal(btNode.RightChild, callback);
+                PostorderTraversal(btNode.leftChild, callback);
+                PostorderTraversal(btNode.rightChild, callback);
                 callback(btNode);
             }
         }
@@ -146,10 +146,10 @@ namespace DataStructure_CSharp
                 BTNode<T> node = stack.Pop();
                 callback(node);
                 // 必须：先右后左
-                if (node.RightChild != null)
-                    stack.Push(node.RightChild);
-                if (node.LeftChild != null)
-                    stack.Push(node.LeftChild);
+                if (node.rightChild != null)
+                    stack.Push(node.rightChild);
+                if (node.leftChild != null)
+                    stack.Push(node.leftChild);
             }
         }
         /// <summary>
@@ -168,13 +168,13 @@ namespace DataStructure_CSharp
                 while (node != null)
                 {
                     stack.Push(node);
-                    node = node.LeftChild;
+                    node = node.leftChild;
                 }
                 if (stack.Count != 0)
                 {
                     node = stack.Pop();
                     callback(node);
-                    node = node.RightChild;
+                    node = node.rightChild;
                 }
             }
         }
@@ -195,10 +195,10 @@ namespace DataStructure_CSharp
             {
                 node = stackOne.Pop();
                 stackTwo.Push(node);
-                if (node.LeftChild != null)
-                    stackOne.Push(node.LeftChild);
-                if (node.RightChild != null)
-                    stackTwo.Push(node.RightChild);
+                if (node.leftChild != null)
+                    stackOne.Push(node.leftChild);
+                if (node.rightChild != null)
+                    stackTwo.Push(node.rightChild);
             }
             while (stackTwo.Count != 0)
             {

@@ -43,18 +43,18 @@ namespace DataStructure_CSharp
             {
                 btNode = new BTNode<T>()
                 {
-                    Data = data,
-                    LeftChild = null,
-                    RightChild = null
+                    data = data,
+                    leftChild = null,
+                    rightChild = null
                 };
                 return true;
             }
-            if (data.Equals(btNode.Data))
+            if (data.Equals(btNode.data))
                 return false;
-            else if (data.GetHashCode() < btNode.Data.GetHashCode())
-                return Insert(ref btNode.LeftChild, data);
+            else if (data.GetHashCode() < btNode.data.GetHashCode())
+                return Insert(ref btNode.leftChild, data);
             else
-                return Insert(ref btNode.RightChild, data);
+                return Insert(ref btNode.rightChild, data);
         }
 
         /// <summary>
@@ -67,12 +67,12 @@ namespace DataStructure_CSharp
         {
             while (btNode != null)
             {
-                if (data.Equals(btNode.Data))
+                if (data.Equals(btNode.data))
                     return btNode;
-                else if (data.GetHashCode() < btNode.Data.GetHashCode())
-                    btNode = btNode.LeftChild;
+                else if (data.GetHashCode() < btNode.data.GetHashCode())
+                    btNode = btNode.leftChild;
                 else
-                    btNode = btNode.RightChild;
+                    btNode = btNode.rightChild;
             }
             return null;
         }
@@ -86,12 +86,12 @@ namespace DataStructure_CSharp
         {
             if (btNode == null)
                 return null;
-            if (data.Equals(btNode.Data))
+            if (data.Equals(btNode.data))
                 return btNode;
-            else if (data.GetHashCode() < btNode.Data.GetHashCode())
-                return RecursionSearch(btNode.LeftChild, data);
+            else if (data.GetHashCode() < btNode.data.GetHashCode())
+                return RecursionSearch(btNode.leftChild, data);
             else
-                return RecursionSearch(btNode.RightChild, data);
+                return RecursionSearch(btNode.rightChild, data);
         }
         /// <summary>
         /// 二叉搜索树：递归查找；out查找结点
@@ -108,15 +108,15 @@ namespace DataStructure_CSharp
                 btParent = null;
                 return null;
             }
-            if (data.Equals(btNode.Data))
+            if (data.Equals(btNode.data))
                 return btNode;
             else
             {
                 btParent = btNode;
-                if (data.GetHashCode() < btNode.Data.GetHashCode())
-                    return RecursionSearch(btParent.LeftChild, data, out btParent);
+                if (data.GetHashCode() < btNode.data.GetHashCode())
+                    return RecursionSearch(btParent.leftChild, data, out btParent);
                 else
-                    return RecursionSearch(btParent.RightChild, data, out btParent);
+                    return RecursionSearch(btParent.rightChild, data, out btParent);
             }
 
         }

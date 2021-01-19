@@ -6,27 +6,28 @@
     /// <typeparam name="T"></typeparam>
     public class SqList<T>
     {
-        public T[] Data = new T[GlobalVariable.MaxSize];
-        public int Length;
+        public T[] data = new T[GlobalVariable.MaxSize];
+        public int length;
     }
     /// <summary>
+    /// Definition for singly-linked list.
     /// 单链表：结点定义
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LNode<T>
+    public class ListNode<T>
     {
-        public T Data;
-        public LNode<T> Next;
+        public T data;
+        public ListNode<T> next;
     }
     /// <summary>
-    /// 双链表：结点定义
+    /// 双（向）链表：结点定义
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DLNode<T>
+    public class DoubleListNode<T>
     {
-        public T Data;
-        public DLNode<T> Pre;
-        public DLNode<T> Next;
+        public T data;
+        public DoubleListNode<T> pre;
+        public DoubleListNode<T> next;
     }
     /// <summary>
     /// 二叉树：结点定义
@@ -34,9 +35,9 @@
     /// <typeparam name="T"></typeparam>
     public class BTNode<T>
     {
-        public T Data;
-        public BTNode<T> LeftChild;
-        public BTNode<T> RightChild;
+        public T data;
+        public BTNode<T> leftChild;
+        public BTNode<T> rightChild;
     }
 
 }

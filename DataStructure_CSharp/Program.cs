@@ -12,7 +12,38 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
-            Test20210113Two();
+            TestSinglyLinkedList();
+
+            //Test20210118Three();
+            void Test20210118Three()
+            {
+                string[] array = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+                Random random = new Random();
+                int count = 50;
+                for (int i = 0; i < count; i++)
+                {
+                    Console.WriteLine(array[random.Next(array.Length)]);
+                }
+            }
+            void Test20210118()
+            {
+                double num = Convert.ToDouble(DateTime.Now.ToShortTimeString().Replace(":", ""));
+                Console.WriteLine(num);
+                Console.WriteLine(DateTime.Now.ToShortTimeString());
+            }
+            void Test20210116()
+            {
+                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
+                int[] array = { 7, 1, 2, 3, 4, 5, 6 };
+                ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
+                //singlyLinkedList.Delete(listTail, 4);
+                singlyLinkedList.DeleteByData(listTail, 7);
+                //singlyLinkedList.Delete(listTail, 6);
+                singlyLinkedList.Print(listTail);
+
+                ListNode<int> listHead = singlyLinkedList.CreateListHead(array);
+                singlyLinkedList.Print(listTail);
+            }
             void Test20210113Two()
             {
                 //int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -24,19 +55,19 @@ namespace DataStructure_CSharp
                 Console.WriteLine(binaryTree.GetLeafNodeCount(btNode));
                 Console.WriteLine(binaryTree.GetAllNodeCount(btNode));
                 Console.WriteLine("LevelTraversal");
-                binaryTree.LevelTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.LevelTraversal(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("PreorderTraversal");
-                binaryTree.PreorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.PreorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("InorderTraversal");
-                binaryTree.InorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.InorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("PostorderTraversal");
-                binaryTree.PostorderTraversal(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.PostorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("PreordeTraversalNonRecursion");
-                binaryTree.PreordeTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.PreordeTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("InorderTraversalNonRecursion");
-                binaryTree.InorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.InorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine("PostorderTraversalNonRecursion");
-                binaryTree.PostorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.Data));
+                binaryTree.PostorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
                 Console.WriteLine();
             }
             void Test20210112()
@@ -68,7 +99,7 @@ namespace DataStructure_CSharp
                 Utility<int>.Print(array);
                 //SortAlgorithm<int>.Instance.InsertSort(array);
                 //SortAlgorithm<int>.Instance.BubbleSort(array);
-                //SortAlgorithm<int>.Instance.QuickSort(array, 0, array.Length - 1);
+                //SortAlgorithm<int>.Instance.QuickSort(array, 0, array.length - 1);
                 SortAlgorithm<int>.Instance.SelectSort(array);
                 Utility<int>.Print(array);
             }
@@ -76,28 +107,44 @@ namespace DataStructure_CSharp
             {
                 Console.WriteLine("头插法");
                 int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                LNode<int> list = SinglyLinkedList<int>.Instance.CreateListHead(array);
-                SinglyLinkedList<int>.Instance.Delete(list, 1);
-                SinglyLinkedList<int>.Instance.Delete(list, 3);
-                SinglyLinkedList<int>.Instance.Delete(list, 6);
-                SinglyLinkedList<int>.Instance.Delete(list, 7);
-                SinglyLinkedList<int>.Instance.Delete(list, 8);
-                SinglyLinkedList<int>.Instance.Delete(list, 9);
-                Utility<int>.Print(list);
+                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
+                ListNode<int> list = singlyLinkedList.CreateListHead(array);
+                singlyLinkedList.Print(list);
             }
             void Test20201228()
             {
                 Console.WriteLine("尾插法");
                 int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                LNode<int> list = SinglyLinkedList<int>.Instance.CreateListTail(array);
+                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
+                ListNode<int> list = singlyLinkedList.CreateListTail(array);
                 while (list != null)
                 {
-                    Console.WriteLine(list.Data);
-                    list = list.Next;
+                    Console.WriteLine(list.data);
+                    list = list.next;
                 }
             }
             Console.ReadLine();
         }
+        private static void TestSinglyLinkedList()
+        {
+            SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
+            int[] array = { 1, 2, 3, 4, 5, 6 };
+            ListNode<int> list = singlyLinkedList.CreateListTail(array);
+            singlyLinkedList.Print(list);
 
+            singlyLinkedList.InsertHead(list, 10, 0);
+            singlyLinkedList.InsertHead(list, 11, 1);
+            singlyLinkedList.InsertHead(list, 99, 5);
+            singlyLinkedList.Print(list);
+            singlyLinkedList.DeleteByData(list, 4);
+            singlyLinkedList.DeleteByPosition(list, -1);
+            singlyLinkedList.Print(list);
+            ListNode<int> node = singlyLinkedList.GetNodeByPosition(list, 0);
+            singlyLinkedList.Print(node);
+        }
+        private void TestSequenceList()
+        {
+
+        }
     }
 }
