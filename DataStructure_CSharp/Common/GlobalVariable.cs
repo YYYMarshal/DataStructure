@@ -8,6 +8,9 @@ namespace DataStructure_CSharp
 {
     public class GlobalVariable
     {
+        /// <summary>
+        /// 最大容量
+        /// </summary>
         public const int MaxSize = 100;
     }
 }

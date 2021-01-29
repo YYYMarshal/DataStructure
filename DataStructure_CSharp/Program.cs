@@ -12,9 +12,10 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
-            TestSinglyLinkedList();
+            //TestSinglyLinkedList();
             //TestSequenceList();
             //TestBinaryTree();
+            TestSequenceStack();
 
             //Test20210118Three();
             void Test20210118Three()
@@ -38,9 +39,6 @@ namespace DataStructure_CSharp
                 SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
                 int[] array = { 7, 1, 2, 3, 4, 5, 6 };
                 ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
-                //singlyLinkedList.Delete(listTail, 4);
-                singlyLinkedList.DeleteByData(listTail, 7);
-                //singlyLinkedList.Delete(listTail, 6);
                 singlyLinkedList.Print(listTail);
 
                 ListNode<int> listHead = singlyLinkedList.CreateListHead(array);
@@ -131,48 +129,40 @@ namespace DataStructure_CSharp
         {
             SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
             int[] array = { 1, 2, 3, 4, 5, 6 };
-
-            Console.WriteLine("\n尾插法建立单链表");
             ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
+
+            Console.WriteLine("\n==========");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 0), "GetElemByPosition");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 1), "GetElemByPosition");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 10), "GetElemByPosition");
+
+            Console.WriteLine("\n==========");
+            singlyLinkedList.Insert(listTail, 10, 0);
+            singlyLinkedList.Print(listTail);
+            singlyLinkedList.Insert(listTail, 11, 1);
+            singlyLinkedList.Print(listTail);
+            singlyLinkedList.Insert(listTail, 12, 1);
+            singlyLinkedList.Print(listTail);
+            singlyLinkedList.Insert(listTail, 0, 5);
             singlyLinkedList.Print(listTail);
 
-            //Console.WriteLine("头插法建立单链表");
-            //ListNode<int> listHead = singlyLinkedList.CreateListHead(array);
-            //singlyLinkedList.Print(listHead);
+            Console.WriteLine("\n==========");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, -1), "GetElemByData");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 0), "GetElemByData");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 2), "GetElemByData");
+            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 20), "GetElemByData");
 
-            Console.WriteLine("\n头插");
-            singlyLinkedList.InsertHead(listTail, 9, -1);
-            singlyLinkedList.InsertHead(listTail, 10, 0);
-            singlyLinkedList.InsertHead(listTail, 11, 3);
-            singlyLinkedList.InsertHead(listTail, 12, 10);
+            Console.WriteLine("\n==========");
+            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 0));
             singlyLinkedList.Print(listTail);
-
-            Console.WriteLine("\n按位置（3）查找结点");
-            ListNode<int> node = singlyLinkedList.GetNodeByPosition(listTail, 3);
-            singlyLinkedList.Print(node);
-            Console.WriteLine("\n按值（3）查找结点");
-            ListNode<int> nodeTwo = singlyLinkedList.GetNodeByData(listTail, 3);
-            singlyLinkedList.Print(nodeTwo);
-
-            //Console.WriteLine("头插");
-            //singlyLinkedList.InsertHead(node, 9, -1);
-            //singlyLinkedList.InsertHead(node, 10, 0);
-            //singlyLinkedList.InsertHead(node, 11, 3);
-            //singlyLinkedList.InsertHead(node, 12, 10);
-            //singlyLinkedList.Print(node);
-
-            Console.WriteLine("\n通过值（10）删除");
-            singlyLinkedList.DeleteByData(listTail, 10);
+            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 1));
             singlyLinkedList.Print(listTail);
-
-            Console.WriteLine("\n通过位置（4）删除");
-            singlyLinkedList.DeleteByPosition(listTail, 4);
+            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 10));
             singlyLinkedList.Print(listTail);
-
-            //Console.WriteLine("通过位置删除");
-            //singlyLinkedList.DeleteByPosition(listTail, 6);
-            //singlyLinkedList.Print(listTail);
-
+            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 3));
+            singlyLinkedList.Print(listTail);
+            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 8));
+            singlyLinkedList.Print(listTail);
         }
         private static void TestSequenceList()
         {
@@ -190,6 +180,19 @@ namespace DataStructure_CSharp
             Console.WriteLine("\n值：" + node);
             int index = sequenceList.GetIndex(sqList, 3);
             Console.WriteLine("\n索引：" + index);
+        }
+        private static void TestSequenceStack()
+        {
+            SqStack<int> sqStack = new SqStack<int>();
+            SequenceStack<int>.InitStack(sqStack);
+            SequenceStack<int>.Push(sqStack, 10);
+            SequenceStack<int>.Push(sqStack, 2);
+            SequenceStack<int>.Push(sqStack, 3);
+            SequenceStack<int>.Push(sqStack, 4);
+            int popElem = SequenceStack<int>.Pop(sqStack);
+            int topElem = SequenceStack<int>.GetTop(sqStack);
+            int result = SequenceStack<int>.Conversion(10, 8);
+            Console.WriteLine();
         }
         private static void TestBinaryTree()
         {

@@ -1,7 +1,7 @@
 ﻿namespace DataStructure_CSharp
 {
     /// <summary>
-    /// Sequential/Sequence
+    /// Sequential/Sequence List
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class SqList<T>
@@ -28,6 +28,15 @@
         public T data;
         public DoubleListNode<T> pre;
         public DoubleListNode<T> next;
+    }
+    /// <summary>
+    /// 顺序栈
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class SqStack<T>
+    {
+        public T[] data = new T[GlobalVariable.MaxSize];
+        public int top;
     }
     /// <summary>
     /// 二叉树：结点定义

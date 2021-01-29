@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Algorithm\SortAlgorithm.cs" />
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="DataStructure\Stack\SequenceStack.cs" />
     <Compile Include="DataStructure\Tree\BinarySearchTree.cs" />
     <Compile Include="DataStructure\Tree\BinaryTree.cs" />
     <Compile Include="Algorithm\SearchAlgorithm.cs" />
@@ -58,8 +59,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataStructure\Stack\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

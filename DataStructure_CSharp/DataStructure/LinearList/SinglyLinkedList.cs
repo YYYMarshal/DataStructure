@@ -13,7 +13,7 @@ namespace DataStructure_CSharp
     public class SinglyLinkedList<T>
     {
         /// <summary>
-        /// 单链表的建立：尾插法（带头结点0）
+        /// 单链表的建立：尾插法（带头结点）
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -32,17 +32,17 @@ namespace DataStructure_CSharp
             }
             tailNode.next = null;
             return list;
-            //return list.next;
         }
         /// <summary>
-        /// 单链表的建立：头插法（带头结点0）
+        /// (YMW)单链表的建立：头插法（带头结点）
+        /// 逆序for循环，最终得到正序的单链表
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
         public ListNode<T> CreateListHead(T[] array)
         {
             ListNode<T> list = new ListNode<T>();
-            for (int i = 0; i < array.Length; i++)
+            for (int i = array.Length - 1; i >= 0; --i)
             {
                 ListNode<T> newNode = new ListNode<T>()
                 {
@@ -52,19 +52,27 @@ namespace DataStructure_CSharp
                 list.next = newNode;
             }
             return list;
-            //return list.next;
         }
         /// <summary>
-        /// My：在pos位置插入一个结点（头插法）
+        /// (YMW)单链表的结点插入：在pos位置前插入一个结点
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="head"></param>
         /// <param name="data"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public bool InsertHead(ListNode<T> list, T data, int pos)
+        public bool Insert(ListNode<T> head, T data, int pos)
         {
-            ListNode<T> node = GetNodeByPosition(list, pos);
-            if (node == null)
+            Console.WriteLine($"Insert(head, pos = {pos}, data = {data})");
+            ListNode<T> node = head;
+            int counter = 0;
+            // 寻找第pos-1个结点
+            pos -= 1;
+            while (node != null && counter < pos)
+            {
+                node = node.next;
+                ++counter;
+            }
+            if (node == null || counter > pos)
                 return false;
             ListNode<T> newNode = new ListNode<T>()
             {
@@ -75,14 +83,18 @@ namespace DataStructure_CSharp
             return true;
         }
         /// <summary>
-        /// 单链表的删除：根据元素值删除结点
+        /// 单链表的结点删除：根据元素值删除结点
         /// </summary>
         /// <param name="list"></param>
         /// <param name="data"></param>
         /// <returns></returns>
         public bool DeleteByData(ListNode<T> list, T data)
         {
-            ListNode<T> node = list;
+            Console.WriteLine($"DeleteByData(list, data = {data})");
+            if (list == null)
+                return false;
+            // 过滤掉头结点
+            ListNode<T> node = list.next;
             while (node.next != null)
             {
                 if (node.next.data.Equals(data))
@@ -95,15 +107,27 @@ namespace DataStructure_CSharp
             return false;
         }
         /// <summary>
-        /// 单链表的删除（My）：通过结点位置删除结点
+        /// (YMW)单链表的删除：通过结点位置删除结点
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="head"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public bool DeleteByPosition(ListNode<T> list, int pos)
+        public bool DeleteByPosition(ListNode<T> head, int pos)
         {
-            ListNode<T> node = GetNodeByPosition(list, pos);
-            if (node == null)
+            Console.WriteLine($"Delete(head, pos = {pos})");
+            if (head == null)
+                return false;
+            ListNode<T> node = head;
+            pos -= 1;
+            int counter = 0;
+            // 寻找第pos个结点，并令node指向其前驱
+            // Note: node.next
+            while (node.next != null && counter < pos)
+            {
+                node = node.next;
+                ++counter;
+            }
+            if (node.next == null || counter > pos)
                 return false;
             node.next = node.next.next;
             return true;
@@ -114,40 +138,47 @@ namespace DataStructure_CSharp
         /// <param name="list"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public ListNode<T> GetNodeByData(ListNode<T> list, T data)
+        public ListNode<T> GetElemByData(ListNode<T> list, T data)
         {
-            ListNode<T> node = list;
+            Console.WriteLine($"GetElemByData(list, data = {data})");
+            if (list == null)
+                return null;
+            // 过滤掉头结点
+            ListNode<T> node = list.next;
             while (node != null && !node.data.Equals(data))
                 node = node.next;
             return node;
         }
         /// <summary>
-        /// 单链表的结点查找：通过结点位置查找结点
+        /// (YMW)单链表的结点查找：通过结点位置查找结点
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="head"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public ListNode<T> GetNodeByPosition(ListNode<T> list, int pos)
+        public ListNode<T> GetElemByPosition(ListNode<T> head, int pos)
         {
-            if (pos < 0)
-                return null;
-            ListNode<T> node = list;
-            for (int i = 0; i < pos; i++)
+            Console.WriteLine($"GetElemByPosition(head, pos = {pos})");
+            ListNode<T> node = head;
+            int counter = 0;
+            // 顺时针向后查找，直到node指向第pos个元素或node为空
+            while (node != null && counter < pos)
             {
-                if (node.next == null)
-                    return null;
                 node = node.next;
+                ++counter;
             }
-            // NOTE: node.next; Because it has a head node
+            // 第pos个元素不存在
+            if (node == null || counter > pos)
+                return null;
             return node;
         }
         /// <summary>
-        /// My: Print a singly linked list
+        /// Print a singly linked list
         /// </summary>
         /// <param name="list"></param>
-        public void Print(ListNode<T> list)
+        public void Print(ListNode<T> list, string info = "")
         {
-            Console.WriteLine("====== 单链表打印 ======");
+            string str = info == "" ? "" : "：" + info;
+            Console.WriteLine($"====== 单链表打印{str} ======");
             while (list != null)
             {
                 Console.Write(list.data + "  ");
@@ -155,20 +186,39 @@ namespace DataStructure_CSharp
             }
             Console.WriteLine();
         }
-        public void PrintExcludeHeadNode(ListNode<T> list)
+        /// <summary>
+        /// 两个非递减序列的单链表的合并
+        /// </summary>
+        /// <param name="listOne"></param>
+        /// <param name="listTwo"></param>
+        /// <returns></returns>
+        public static ListNode<T> MergeList(ListNode<T> listOne, ListNode<T> listTwo)
         {
-            Console.WriteLine("====== 单链表打印 ======");
-            if (list == null)
+            if (listOne == null && listTwo == null)
+                return null;
+            else if (listOne == null || listTwo == null)
+                return listOne ?? listTwo;
+
+            ListNode<T> tailOne = listOne.next;
+            ListNode<T> tailTwo = listTwo.next;
+            ListNode<T> list = listOne;
+            ListNode<T> tail = list;
+            while (tailOne != null && tailTwo != null)
             {
-                Console.WriteLine("null");
-                return;
+                if (tailOne.data.GetHashCode() <= tailTwo.data.GetHashCode())
+                {
+                    tail.next = tailOne;
+                    tailOne = tailOne.next;
+                }
+                else
+                {
+                    tail.next = tailTwo;
+                    tailTwo = tailTwo.next;
+                }
+                tail = tail.next;
             }
-            while (list.next != null)
-            {
-                Console.Write(list.next.data + "  ");
-                list = list.next;
-            }
-            Console.WriteLine();
+            tail.next = tailOne ?? tailTwo;
+            return list;
         }
     }
 }
