@@ -39,6 +39,7 @@ namespace DataStructure_CSharp
         {
             return sqStack.top == -1;
         }
+        #region Others
         /// <summary>
         /// 十进制数num转换为d进制数
         /// </summary>
@@ -61,5 +62,6 @@ namespace DataStructure_CSharp
             }
             return Convert.ToInt32(result);
         }
+        #endregion
     }
 }

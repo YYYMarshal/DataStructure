@@ -12,6 +12,7 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class SinglyLinkedList<T>
     {
+        #region Create
         /// <summary>
         /// 单链表的建立：尾插法（带头结点）
         /// </summary>
@@ -34,7 +35,7 @@ namespace DataStructure_CSharp
             return list;
         }
         /// <summary>
-        /// (YMW)单链表的建立：头插法（带头结点）
+        /// (YWM)单链表的建立：头插法（带头结点）
         /// 逆序for循环，最终得到正序的单链表
         /// </summary>
         /// <param name="array"></param>
@@ -53,8 +54,10 @@ namespace DataStructure_CSharp
             }
             return list;
         }
+        #endregion
+        #region Insert
         /// <summary>
-        /// (YMW)单链表的结点插入：在pos位置前插入一个结点
+        /// (YWM)单链表的结点插入：在pos位置前插入一个结点
         /// </summary>
         /// <param name="head"></param>
         /// <param name="data"></param>
@@ -82,6 +85,8 @@ namespace DataStructure_CSharp
             node.next = newNode;
             return true;
         }
+        #endregion
+        #region Delete
         /// <summary>
         /// 单链表的结点删除：根据元素值删除结点
         /// </summary>
@@ -107,7 +112,7 @@ namespace DataStructure_CSharp
             return false;
         }
         /// <summary>
-        /// (YMW)单链表的删除：通过结点位置删除结点
+        /// (YWM)单链表的删除：通过结点位置删除结点
         /// </summary>
         /// <param name="head"></param>
         /// <param name="pos"></param>
@@ -132,6 +137,8 @@ namespace DataStructure_CSharp
             node.next = node.next.next;
             return true;
         }
+        #endregion
+        #region Get
         /// <summary>
         /// 单链表的结点查找：通过结点值查找结点
         /// </summary>
@@ -150,7 +157,7 @@ namespace DataStructure_CSharp
             return node;
         }
         /// <summary>
-        /// (YMW)单链表的结点查找：通过结点位置查找结点
+        /// (YWM)单链表的结点查找：通过结点位置查找结点
         /// </summary>
         /// <param name="head"></param>
         /// <param name="pos"></param>
@@ -171,6 +178,8 @@ namespace DataStructure_CSharp
                 return null;
             return node;
         }
+        #endregion
+        #region Print
         /// <summary>
         /// Print a singly linked list
         /// </summary>
@@ -186,6 +195,8 @@ namespace DataStructure_CSharp
             }
             Console.WriteLine();
         }
+        #endregion
+        #region Others
         /// <summary>
         /// 两个非递减序列的单链表的合并
         /// </summary>
@@ -220,5 +231,6 @@ namespace DataStructure_CSharp
             tail.next = tailOne ?? tailTwo;
             return list;
         }
+        #endregion
     }
 }

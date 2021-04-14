@@ -45,7 +45,8 @@ namespace DataStructure_CSharp
             while (queue.Count != 0)
             {
                 BTNode<T> node = queue.Dequeue();
-                callback(node);
+                callback?.Invoke(node);
+                //callback(node);
                 //callback.Invoke(btNode);
                 if (node.leftChild != null)
                     queue.Enqueue(node.leftChild);
