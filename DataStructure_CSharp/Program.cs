@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,201 +10,262 @@ namespace DataStructure_CSharp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess().Id);
             //TestSinglyLinkedList();
-            //TestSequenceList();
-            //TestBinaryTree();
-            TestSequenceStack();
+            TestBinaryTree();
 
-            //Test20210118Three();
-            void Test20210118Three()
-            {
-                string[] array = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-                Random random = new Random();
-                int count = 50;
-                for (int i = 0; i < count; i++)
-                {
-                    Console.WriteLine(array[random.Next(array.Length)]);
-                }
-            }
-            void Test20210118()
-            {
-                double num = Convert.ToDouble(DateTime.Now.ToShortTimeString().Replace(":", ""));
-                Console.WriteLine(num);
-                Console.WriteLine(DateTime.Now.ToShortTimeString());
-            }
-            void Test20210116()
-            {
-                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
-                int[] array = { 7, 1, 2, 3, 4, 5, 6 };
-                ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
-                singlyLinkedList.Print(listTail);
-
-                ListNode<int> listHead = singlyLinkedList.CreateListHead(array);
-                singlyLinkedList.Print(listTail);
-            }
-            void Test20210113Two()
-            {
-                //int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-                int[] array = { 1, 2, 3, 4, 5 };
-                BTNode<int> btNode = null;
-                BinaryTree<int> binaryTree = new BinaryTree<int>();
-                binaryTree.Create(ref btNode, array, 0);
-                Console.WriteLine(binaryTree.GetDepth(btNode));
-                Console.WriteLine(binaryTree.GetLeafNodeCount(btNode));
-                Console.WriteLine(binaryTree.GetAllNodeCount(btNode));
-                Console.WriteLine("LevelTraversal");
-                binaryTree.LevelTraversal(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("PreorderTraversal");
-                binaryTree.PreorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("InorderTraversal");
-                binaryTree.InorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("PostorderTraversal");
-                binaryTree.PostorderTraversal(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("PreordeTraversalNonRecursion");
-                binaryTree.PreordeTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("InorderTraversalNonRecursion");
-                binaryTree.InorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine("PostorderTraversalNonRecursion");
-                binaryTree.PostorderTraversalNonRecursion(btNode, (tree) => Console.WriteLine(tree.data));
-                Console.WriteLine();
-            }
-            void Test20210112()
-            {
-                int value = 234;
-                int[] values = new int[4];
-                for (int i = 0; i < values.Length; i++)
-                {
-                    values[i] = value % 10;
-                    value /= 10;
-                }
-                Console.WriteLine();
-            }
-            void Test20210109()
-            {
-                DateTime.TryParse("2020.10.01", out DateTime result);
-                Console.WriteLine(result);
-                Console.WriteLine(result.ToShortDateString());
-                Console.WriteLine(DateTime.Now.ToShortDateString());
-
-                double a = 10;
-                a += a *= a /= a - 6;
-                Console.WriteLine(a);
-            }
-            //Test20210106();
-            void Test20210106()
-            {
-                int[] array = new int[] { 9, 8, 5, 4, 1, 2 };
-                Utility<int>.Print(array);
-                //SortAlgorithm<int>.Instance.InsertSort(array);
-                //SortAlgorithm<int>.Instance.BubbleSort(array);
-                //SortAlgorithm<int>.Instance.QuickSort(array, 0, array.length - 1);
-                SortAlgorithm<int>.Instance.SelectSort(array);
-                Utility<int>.Print(array);
-            }
-            void Test20210105()
-            {
-                Console.WriteLine("头插法");
-                int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
-                ListNode<int> list = singlyLinkedList.CreateListHead(array);
-                singlyLinkedList.Print(list);
-            }
-            void Test20201228()
-            {
-                Console.WriteLine("尾插法");
-                int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
-                ListNode<int> list = singlyLinkedList.CreateListTail(array);
-                while (list != null)
-                {
-                    Console.WriteLine(list.data);
-                    list = list.next;
-                }
-            }
-            Console.ReadLine();
+            Console.ReadKey();
         }
+        #region Singly Linked List
         private static void TestSinglyLinkedList()
         {
-            SinglyLinkedList<int> singlyLinkedList = new SinglyLinkedList<int>();
-            int[] array = { 1, 2, 3, 4, 5, 6 };
-            ListNode<int> listTail = singlyLinkedList.CreateListTail(array);
-
-            Console.WriteLine("\n==========");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 0), "GetElemByPosition");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 1), "GetElemByPosition");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByPosition(listTail, 10), "GetElemByPosition");
-
-            Console.WriteLine("\n==========");
-            singlyLinkedList.Insert(listTail, 10, 0);
-            singlyLinkedList.Print(listTail);
-            singlyLinkedList.Insert(listTail, 11, 1);
-            singlyLinkedList.Print(listTail);
-            singlyLinkedList.Insert(listTail, 12, 1);
-            singlyLinkedList.Print(listTail);
-            singlyLinkedList.Insert(listTail, 0, 5);
-            singlyLinkedList.Print(listTail);
-
-            Console.WriteLine("\n==========");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, -1), "GetElemByData");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 0), "GetElemByData");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 2), "GetElemByData");
-            singlyLinkedList.Print(singlyLinkedList.GetElemByData(listTail, 20), "GetElemByData");
-
-            Console.WriteLine("\n==========");
-            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 0));
-            singlyLinkedList.Print(listTail);
-            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 1));
-            singlyLinkedList.Print(listTail);
-            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 10));
-            singlyLinkedList.Print(listTail);
-            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 3));
-            singlyLinkedList.Print(listTail);
-            Console.WriteLine(singlyLinkedList.DeleteByPosition(listTail, 8));
-            singlyLinkedList.Print(listTail);
+            Console.WriteLine("-------------------- TestSinglyLinkedList --------------------");
+            Console.WriteLine("功能选择：\n" +
+                "1. Create\n" +
+                "2. GetElem\n" +
+                "3. Insert\n" +
+                "4. Delete\n" +
+                "5. Merge\n");
+            int selection = 0;
+            try
+            {
+                selection = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("请输入正确的选项！！！");
+            }
+            switch (selection)
+            {
+                case 1:
+                    TestSinglyLinkedList_Create();
+                    break;
+                case 2:
+                    TestSinglyLinkedList_GetElem();
+                    break;
+                case 3:
+                    TestSinglyLinkedList_Insert();
+                    break;
+                case 4:
+                    TestSinglyLinkedList_Delete();
+                    break;
+                case 5:
+                    TestSinglyLinkedList_Merge();
+                    break;
+            }
         }
-        private static void TestSequenceList()
+        private static void TestSinglyLinkedList_Create()
         {
-            SequenceList<int> sequenceList = new SequenceList<int>();
-            int[] array = { 8, 1, 2, 3, 4, 5, 6, 7 };
-            SqList<int> sqList = sequenceList.Create(array);
-            sequenceList.Print(sqList);
-            Console.WriteLine("\n" + sqList.length);
-            sequenceList.Insert(sqList, 1, 10);
-            sequenceList.Print(sqList);
-            sequenceList.Delete(sqList, 5, out int data);
-            sequenceList.Print(sqList);
-            Console.WriteLine("\n值：" + data);
-            int node = sequenceList.GetElem(sqList, 2);
-            Console.WriteLine("\n值：" + node);
-            int index = sequenceList.GetIndex(sqList, 3);
-            Console.WriteLine("\n索引：" + index);
+            Console.WriteLine("----------   单链表的Create测试   ----------\n");
+            SinglyLinkedList<int> function = new SinglyLinkedList<int>();
+            int[] array = new int[] { 999, 1, 2, 3, 4, 5 };
+
+            Console.WriteLine("YWM：头插法，逆序反循环，得到正序单链表");
+            function.Print(function.CreateList(array));
+            function.Print(function.CreateList(null));
+
+            Console.WriteLine("TQ：尾插法");
+            function.Print(function.CreateListTail(array));
+            function.Print(function.CreateListTail(null));
+
+            Console.WriteLine("TQ：头插法");
+            function.Print(function.CreateListHead(array));
+            function.Print(function.CreateListTail(null));
         }
-        private static void TestSequenceStack()
+        private static void TestSinglyLinkedList_GetElem()
         {
-            SqStack<int> sqStack = new SqStack<int>();
-            SequenceStack<int>.InitStack(sqStack);
-            SequenceStack<int>.Push(sqStack, 10);
-            SequenceStack<int>.Push(sqStack, 2);
-            SequenceStack<int>.Push(sqStack, 3);
-            SequenceStack<int>.Push(sqStack, 4);
-            int popElem = SequenceStack<int>.Pop(sqStack);
-            int topElem = SequenceStack<int>.GetTop(sqStack);
-            int result = SequenceStack<int>.Conversion(10, 8);
+            Console.WriteLine("----------   单链表的GetElem测试   ----------");
+            SinglyLinkedList<int> function = new SinglyLinkedList<int>();
+            int[] array = new int[] { 999, 1, 2, 3, 4, 5 };
+            LNode<int> list = function.CreateList(array);
+            function.Print(list);
+
+            Console.WriteLine("GetElemByPosition");
+            function.Print(function.GetElemByPosition(list, 0));
+            LNode<int> subList = function.GetElemByPosition(list, 2);
+            function.Print(subList);
+            function.Print(function.GetElemByPosition(list, 6));
+            function.Print(function.GetElemByPosition(list, 7));
+            function.Print(function.GetElemByPosition(null, 1));
+            Console.WriteLine("子表测试\n");
+            function.Print(function.GetElemByPosition(subList, 0));
+            function.Print(function.GetElemByPosition(subList, 1));
+
+            Console.WriteLine("GetElemByData");
+            function.Print(function.GetElemByData(list, 0));
+            function.Print(function.GetElemByData(list, 3));
+            function.Print(function.GetElemByData(list, 66));
+            function.Print(function.GetElemByData(null, 1));
+        }
+        private static void TestSinglyLinkedList_Insert()
+        {
+            Console.WriteLine("----------   单链表的Insert测试   ----------");
+            SinglyLinkedList<int> function = new SinglyLinkedList<int>();
+            int[] array = new int[] { 999, 1, 2, 3, 4, 5 };
+            LNode<int> list = function.CreateList(array);
+            function.Print(list);
+
             Console.WriteLine();
+            Console.WriteLine(function.Insert(list, 0, 10));
+            function.Print(list);
+            Console.WriteLine(function.Insert(list, 1, 100));
+            function.Print(list);
+            Console.WriteLine(function.Insert(list, 6, 106));
+            function.Print(list);
+            Console.WriteLine(function.Insert(list, 5, 105));
+            function.Print(list);
+            Console.WriteLine(function.Insert(list, 11, 999));
+            function.Print(list);
+            Console.WriteLine(function.Insert(list, 10, 99));
+            function.Print(list);
+            Console.WriteLine(function.Insert(null, 2, 888));
+            function.Print(list);
         }
+        private static void TestSinglyLinkedList_Delete()
+        {
+            Console.WriteLine("----------   单链表的Delete测试   ----------");
+            SinglyLinkedList<int> function = new SinglyLinkedList<int>();
+            int[] array = new int[] { 999, 1, 2, 3, 4, 5 };
+            LNode<int> list = function.CreateList(array);
+            function.Print(list);
+
+            Console.WriteLine("DeleteByPosition");
+            Console.WriteLine(function.DeleteByPosition(list, 0));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByPosition(list, 1));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByPosition(list, 5));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByPosition(list, 5));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByPosition(null, 2));
+            function.Print(list);
+
+            Console.WriteLine("DeleteByData");
+            Console.WriteLine(function.DeleteByData(list, 0));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByData(list, 3));
+            function.Print(list);
+            Console.WriteLine(function.DeleteByData(null, 1));
+            function.Print(list);
+        }
+        private static void TestSinglyLinkedList_Merge()
+        {
+            Console.WriteLine("----------   单链表的Merge测试   ----------");
+            SinglyLinkedList<int> function = new SinglyLinkedList<int>();
+
+            int[] arrayOne = new int[] { 5, 7, 9, 10 };
+            LNode<int> listOne = function.CreateList(arrayOne);
+            function.Print(listOne);
+            int[] arrayTwo = new int[] { 1, 6, 8, 20 };
+            LNode<int> listTwo = function.CreateList(arrayTwo);
+            function.Print(listTwo);
+
+            LNode<int> listMergeOne = function.MergeList(listOne.next, listTwo);
+            function.Print(listMergeOne);
+            function.Print(function.GetElemByPosition(listMergeOne, 0));
+            function.Print(function.GetElemByPosition(listMergeOne, 1));
+            LNode<int> listMergeTwo = function.MergeList(null, null);
+            function.Print(listMergeTwo);
+        }
+        #endregion
+
+        #region Binary Tree
         private static void TestBinaryTree()
         {
-            BinaryTree<int> binaryTree = new BinaryTree<int>();
-            BTNode<int> btNode = new BTNode<int>();
-            int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            binaryTree.Create(ref btNode, array, 0);
-            binaryTree.LevelTraversal(btNode, (node) => Console.WriteLine(node.data));
-            Console.WriteLine("先序遍历");
-            binaryTree.PreorderTraversal(btNode, (node) => Console.WriteLine(node.data));
-            Console.WriteLine("中序遍历");
-            binaryTree.InorderTraversal(btNode, (node) => Console.WriteLine(node.data));
-            Console.WriteLine("后序遍历");
-            binaryTree.PostorderTraversal(btNode, (node) => Console.WriteLine(node.data));
+            Console.WriteLine("-------------------- TestBinaryTree --------------------");
+            Console.WriteLine("功能选择：\n" +
+                "1. Create\n" +
+                "2. Recursion Traversal\n" +
+                "3. Non-Recursion Traversal\n" +
+                "4. TestBinaryTree_Get"
+                );
+            int selection = 0;
+            try
+            {
+                selection = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("请输入正确的选项！！！");
+            }
+            switch (selection)
+            {
+                case 1:
+                    TestBinaryTree_Create();
+                    break;
+                case 2:
+                    TestBinaryTree_RecursionTraversal();
+                    break;
+                case 3:
+                    TestBinaryTree_NonRecursionTraversal();
+                    break;
+                case 4:
+                    TestBinaryTree_Get();
+                    break;
+                case 5:
+                    break;
+            }
         }
+        private static void TestBinaryTree_Create()
+        {
+            BinaryTree<int> function = new BinaryTree<int>();
+            int[] array = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            BTNode<int> btNode = new BTNode<int>();
+            //function.Create(ref btNode, null);
+            function.Create(ref btNode, array);
+            function.LevelTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+        }
+        private static void TestBinaryTree_RecursionTraversal()
+        {
+            BinaryTree<int> function = new BinaryTree<int>();
+            int[] array = new int[] { 1, 3, 4, 7, 8, 10 };
+            BTNode<int> btNode = new BTNode<int>();
+            function.Create(ref btNode, array);
+
+            function.PreorderTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+            Console.WriteLine();
+
+            function.InorderTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+            Console.WriteLine();
+
+            function.PostorderTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+        }
+        private static void TestBinaryTree_NonRecursionTraversal()
+        {
+            BinaryTree<int> function = new BinaryTree<int>();
+            int[] array = new int[] { 1, 3, 4, 7, 8, 10 };
+            BTNode<int> btNode = new BTNode<int>();
+            function.Create(ref btNode, array);
+
+            function.PreordeNonRecursionTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+            Console.WriteLine();
+
+            function.InorderNonRecursionTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+            Console.WriteLine();
+
+            function.PostorderNonRecursionTraversal(btNode,
+                (node) => Console.Write(node.data + "  "));
+        }
+        private static void TestBinaryTree_Get()
+        {
+            BinaryTree<int> function = new BinaryTree<int>();
+            int[] array = new int[] { 1, 3, 4, 7, 8, 10 };
+            BTNode<int> btNode = new BTNode<int>();
+            function.Create(ref btNode, array);
+
+            Console.WriteLine(function.GetDepth(btNode));
+            Console.WriteLine(function.GetLeafNodeCount(btNode));
+            Console.WriteLine(function.GetAllNodeCount(btNode));
+        }
+        #endregion
     }
 }

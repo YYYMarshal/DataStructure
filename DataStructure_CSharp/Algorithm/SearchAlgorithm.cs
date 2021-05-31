@@ -43,9 +43,9 @@ namespace DataStructure_CSharp
         /// <param name="head"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public ListNode<T> SequentialSearch(ListNode<T> head, T key)
+        public LNode<T> SequentialSearch(LNode<T> head, T key)
         {
-            ListNode<T> tailNode = head.next;
+            LNode<T> tailNode = head.next;
             while (tailNode != null)
             {
                 if (key.Equals(tailNode.data))

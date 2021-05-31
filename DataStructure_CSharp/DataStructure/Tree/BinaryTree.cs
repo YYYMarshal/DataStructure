@@ -12,15 +12,16 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class BinaryTree<T>
     {
+        #region Create
         // https://blog.csdn.net/chenxun_2010/article/details/42365763?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
         /// <summary>
-        /// 创建二叉树（从上到下，从左至右）；
+        /// (CSDN)创建二叉树（从上到下，从左至右）；
         /// 插入过程为先序遍历的顺序
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="array"></param>
         /// <param name="index"></param>
-        public void Create(ref BTNode<T> btNode, T[] array, int index)
+        public void Create(ref BTNode<T> btNode, T[] array, int index = 0)
         {
             if (index >= array.Length)
                 return;
@@ -31,31 +32,35 @@ namespace DataStructure_CSharp
             Create(ref btNode.leftChild, array, 2 * index + 1);
             Create(ref btNode.rightChild, array, 2 * index + 2);
         }
+        #endregion
+
+        #region Traversal
         /// <summary>
-        /// 二叉树：层次遍历
+        /// (TQ)层次遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
         public void LevelTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
-            Queue<BTNode<T>> queue = new Queue<BTNode<T>>();
             if (btNode == null)
                 return;
+            Queue<BTNode<T>> queue = new Queue<BTNode<T>>();
             queue.Enqueue(btNode);
             while (queue.Count != 0)
             {
                 BTNode<T> node = queue.Dequeue();
                 callback?.Invoke(node);
-                //callback(node);
-                //callback.Invoke(btNode);
                 if (node.leftChild != null)
                     queue.Enqueue(node.leftChild);
                 if (node.rightChild != null)
                     queue.Enqueue(node.rightChild);
             }
         }
+        #endregion
+
+        #region Traversal Recursion
         /// <summary>
-        /// 二叉树：先序遍历
+        /// (TQ)先序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -69,7 +74,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 二叉树：中序遍历
+        /// (TQ)中序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -83,7 +88,7 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 二叉树：后序遍历
+        /// (TQ)后序遍历
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
@@ -96,10 +101,13 @@ namespace DataStructure_CSharp
                 callback(btNode);
             }
         }
+        #endregion
+
+        #region Non-Recursion Traversal 
         /// <summary>
-        /// 二叉树：先序遍历---非递归
+        /// (TQ)先序遍历---非递归
         /// </summary>
-        public void PreordeTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
+        public void PreordeNonRecursionTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode == null)
                 return;
@@ -117,11 +125,11 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 二叉树：中序遍历---非递归
+        /// (TQ)中序遍历---非递归
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
-        public void InorderTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
+        public void InorderNonRecursionTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode == null)
                 return;
@@ -129,6 +137,7 @@ namespace DataStructure_CSharp
             BTNode<T> node = btNode;
             while (stack.Count != 0 || node != null)
             {
+                // 左孩子存在，则左孩子入栈
                 while (node != null)
                 {
                     stack.Push(node);
@@ -143,11 +152,11 @@ namespace DataStructure_CSharp
             }
         }
         /// <summary>
-        /// 二叉树：后序遍历---非递归
+        /// (TQ)后序遍历---非递归
         /// </summary>
         /// <param name="btNode"></param>
         /// <param name="callback"></param>
-        public void PostorderTraversalNonRecursion(BTNode<T> btNode, Action<BTNode<T>> callback)
+        public void PostorderNonRecursionTraversal(BTNode<T> btNode, Action<BTNode<T>> callback)
         {
             if (btNode == null)
                 return;
@@ -159,20 +168,25 @@ namespace DataStructure_CSharp
             {
                 node = stackOne.Pop();
                 stackTwo.Push(node);
+                // 注意和先序非递归遍历的区别，这里是先左后右
                 if (node.leftChild != null)
                     stackOne.Push(node.leftChild);
                 if (node.rightChild != null)
-                    stackTwo.Push(node.rightChild);
+                    //stackTwo.Push(node.rightChild);
+                    stackOne.Push(node.rightChild);
             }
             while (stackTwo.Count != 0)
             {
-                // 出栈顺序即为后序遍历顺序
+                // 出栈顺序即为后序遍历顺序列
                 node = stackTwo.Pop();
                 callback(node);
             }
         }
+        #endregion
+
+        #region Get Info
         /// <summary>
-        /// 二叉树：获取树的深度（递归）
+        /// (LeetCode TQ)获取树的深度（递归）
         /// </summary>
         /// <param name="btNode"></param>
         /// <returns></returns>
@@ -183,7 +197,7 @@ namespace DataStructure_CSharp
             return Math.Max(GetDepth(btNode.leftChild), GetDepth(btNode.rightChild)) + 1;
         }
         /// <summary>
-        /// 二叉树：获取树的所有叶子结点的数量
+        /// 获取树的所有叶子结点的数量
         /// </summary>
         /// <param name="btNode"></param>
         /// <returns></returns>
@@ -197,7 +211,7 @@ namespace DataStructure_CSharp
                 return GetLeafNodeCount(btNode.leftChild) + GetLeafNodeCount(btNode.rightChild);
         }
         /// <summary>
-        /// 二叉树：获取树的所有结点的数量
+        /// 获取树的所有结点的数量
         /// </summary>
         /// <param name="btNode"></param>
         /// <returns></returns>
@@ -207,5 +221,8 @@ namespace DataStructure_CSharp
                 return 0;
             return GetAllNodeCount(btNode.leftChild) + GetAllNodeCount(btNode.rightChild) + 1;
         }
+        #endregion
     }
 }
+
+
