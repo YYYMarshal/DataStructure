@@ -12,7 +12,8 @@ namespace DataStructure_CSharp
         {
             Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess().Id);
             //TestSinglyLinkedList();
-            TestBinaryTree();
+            //TestBinaryTree();
+            TestSortAlgorithm();
 
             Console.ReadKey();
         }
@@ -179,7 +180,7 @@ namespace DataStructure_CSharp
                 "1. Create\n" +
                 "2. Recursion Traversal\n" +
                 "3. Non-Recursion Traversal\n" +
-                "4. TestBinaryTree_Get"
+                "4. Get"
                 );
             int selection = 0;
             try
@@ -265,6 +266,62 @@ namespace DataStructure_CSharp
             Console.WriteLine(function.GetDepth(btNode));
             Console.WriteLine(function.GetLeafNodeCount(btNode));
             Console.WriteLine(function.GetAllNodeCount(btNode));
+        }
+        #endregion
+
+        #region Sort Algorithm
+        private static void TestSortAlgorithm()
+        {
+            Console.WriteLine("-------------------- TestBinaryTree --------------------");
+            Console.WriteLine("功能选择：\n" +
+                "1. Insert Sort\n" +
+                "2. Exchange\n" +
+                "3. \n" +
+                "4. "
+                );
+            int selection = 0;
+            try
+            {
+                selection = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("请输入正确的选项！！！");
+            }
+            switch (selection)
+            {
+                case 1:
+                    TestSortAlgorithm_InsertSort();
+                    break;
+                case 2:
+                    TestSortAlgorithm_Exchange();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        }
+        private static void TestSortAlgorithm_InsertSort()
+        {
+            SortAlgorithm<int> function = new SortAlgorithm<int>();
+            int[] array = new int[] { 9, 8, 6, 5, 4, 1, 2 };
+            function.InsertSort(array);
+            Utility<int>.Print(array);
+        }
+        private static void TestSortAlgorithm_Exchange()
+        {
+            SortAlgorithm<int> function = new SortAlgorithm<int>();
+            int[] array = new int[] { 3, 5, 8, 7, 4, 1, 2 };
+            function.BubbleSort(array);
+            Utility<int>.Print(array);
+
+            array = new int[] { 13, 15, 18, 17, 14, 11, 12 };
+            function.QuickSort(array, 0, array.Length - 1);
+            Utility<int>.Print(array);
         }
         #endregion
     }

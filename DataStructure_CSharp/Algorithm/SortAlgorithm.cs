@@ -37,41 +37,23 @@ namespace DataStructure_CSharp
 
         #region 交换类排序
         /// <summary>
-        /// (MY)冒泡排序：">"是递增排序
+        /// (BaiduBaike + TQ)冒泡排序
         /// </summary>
         /// <param name="array"></param>
-        public void MyBubbleSort(T[] array)
+        public void BubbleSort(T[] array)
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
+                // 变量 #isChanged# 用来标记本趟排序是否发生了交换
+                bool isChanged = false;
                 for (int j = 0; j < array.Length - 1 - i; j++)
                 {
+                    // "前 > 后" 是递增排序
                     if (array[j].GetHashCode() > array[j + 1].GetHashCode())
                     {
                         T temp = array[j];
                         array[j] = array[j + 1];
                         array[j + 1] = temp;
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// (TQ)冒泡排序
-        /// </summary>
-        /// <param name="array"></param>
-        public void BubbleSort(T[] array)
-        {
-            for (int i = array.Length - 1; i >= 1; i--)
-            {
-                // 变量 #isChanged# 用来标记本趟排序是否发生了交换
-                bool isChanged = false;
-                for (int j = 1; j <= i; j++)
-                {
-                    if (array[j - 1].GetHashCode() > array[j].GetHashCode())
-                    {
-                        T temp = array[j];
-                        array[j] = array[j - 1];
-                        array[j - 1] = temp;
                         isChanged = true;
                     }
                 }

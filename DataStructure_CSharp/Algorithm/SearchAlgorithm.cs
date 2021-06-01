@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,9 @@ namespace DataStructure_CSharp
     /// <typeparam name="T"></typeparam>
     public class SearchAlgorithm<T>
     {
-        private static readonly Lazy<SearchAlgorithm<T>> lazy = new Lazy<SearchAlgorithm<T>>(() => new SearchAlgorithm<T>());
-        public static SearchAlgorithm<T> Instance
-        {
-            get
-            {
-                return lazy.Value;
-            }
-        }
-
         #region 顺序查找
         /// <summary>
-        /// 顺序查找(顺序表)：查找成功则返回key所在的索引；否则返回-1
+        /// (TQ)顺序查找(顺序表)：查找成功则返回key所在的索引；否则返回-1
         /// </summary>
         /// <param name="array"></param>
         /// <param name="key"></param>
@@ -58,10 +50,11 @@ namespace DataStructure_CSharp
 
         #region 二分查找（折半查找）
         /// <summary>
-        /// 二分查找（折半查找）
+        /// (TQ)二分查找（折半查找）
         /// </summary>
         public int BinarySearch(T[] array, int low, int high, T key)
         {
+            // 当子表长度大于等于1时进行循环
             while (low <= high)
             {
                 int mid = (low + high) / 2;
@@ -78,3 +71,5 @@ namespace DataStructure_CSharp
 
     }
 }
+
+

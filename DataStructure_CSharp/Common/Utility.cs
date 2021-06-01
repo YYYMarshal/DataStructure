@@ -13,8 +13,9 @@ namespace DataStructure_CSharp
             Console.WriteLine("====== 数组打印 ======");
             for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(array[i]);
+                Console.Write(array[i] + "  ");
             }
+            Console.WriteLine();
         }
     }
 }
