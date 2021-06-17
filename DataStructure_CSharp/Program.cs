@@ -319,9 +319,9 @@ namespace DataStructure_CSharp
             function.BubbleSort(array);
             Utility<int>.Print(array);
 
-            array = new int[] { 13, 15, 18, 17, 14, 11, 12 };
-            function.QuickSort(array, 0, array.Length - 1);
-            Utility<int>.Print(array);
+            int[] arrayTwo = new int[] { 3, 5, 8, 7, 4, 1, 2 };
+            function.QuickSort(arrayTwo, 0, arrayTwo.Length - 1);
+            Utility<int>.Print(arrayTwo);
         }
         #endregion
     }

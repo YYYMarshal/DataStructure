@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,32 +11,52 @@ namespace DataStructure_CSharp
     /// Stack: Last In First Out(LIFO)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SequenceStack<T>
+    public class SequentialStack<T>
     {
-        public static void InitStack(SqStack<T> sqStack)
+        /// <summary>
+        /// (TQ)初始化栈
+        /// </summary>
+        /// <param name="sqStack"></param>
+        public void InitStack(SqStack<T> sqStack)
         {
             sqStack.top = -1;
         }
-        public static T GetTop(SqStack<T> sqStack)
+        public T GetTop(SqStack<T> sqStack)
         {
             if (sqStack.top == -1)
                 return default;
             return sqStack.data[sqStack.top];
         }
-        public static bool Push(SqStack<T> sqStack, T elem)
+        /// <summary>
+        /// (TQ)进栈
+        /// </summary>
+        /// <param name="sqStack"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool Push(SqStack<T> sqStack, T data)
         {
             if (sqStack.top == sqStack.data.Length - 1)
                 return false;
-            sqStack.data[++sqStack.top] = elem;
+            sqStack.data[++sqStack.top] = data;
             return true;
         }
-        public static T Pop(SqStack<T> sqStack)
+        /// <summary>
+        /// (TQ)出栈
+        /// </summary>
+        /// <param name="sqStack"></param>
+        /// <returns></returns>
+        public T Pop(SqStack<T> sqStack)
         {
             if (sqStack.top == -1)
                 return default;
             return sqStack.data[sqStack.top--];
         }
-        public static bool StackEmpty(SqStack<T> sqStack)
+        /// <summary>
+        /// (TQ)判断是否为空栈
+        /// </summary>
+        /// <param name="sqStack"></param>
+        /// <returns></returns>
+        public bool IsStackEmpty(SqStack<T> sqStack)
         {
             return sqStack.top == -1;
         }
@@ -46,19 +67,20 @@ namespace DataStructure_CSharp
         /// <param name="num"></param>
         /// <param name="d"></param>
         /// <returns></returns>
-        public static int Conversion(int num, int d)
+        public int Conversion(int num, int d)
         {
             string result = "";
             SqStack<int> sqStack = new SqStack<int>();
-            SequenceStack<int>.InitStack(sqStack);
+            SequentialStack<int> function = new SequentialStack<int>();
+            function.InitStack(sqStack);
             while (num > 0)
             {
-                SequenceStack<int>.Push(sqStack, num % d);
+                function.Push(sqStack, num % d);
                 num /= d;
             }
-            while (!SequenceStack<int>.StackEmpty(sqStack))
+            while (!function.IsStackEmpty(sqStack))
             {
-                result += SequenceStack<int>.Pop(sqStack);
+                result += function.Pop(sqStack);
             }
             return Convert.ToInt32(result);
         }
